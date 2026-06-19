@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 8px 14px;
+    cursor: pointer;
+}
+
+.podcast {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,.1);
+}
+
+audio {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.delete-btn {
+    background: crimson;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.delete-btn:hover {
+    opacity: 0.9;
+}

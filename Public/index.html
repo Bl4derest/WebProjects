@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcast Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>🎙 Podcast Hub</h1>
+
+    <form id="uploadForm">
+        <input
+            type="file"
+            name="podcast"
+            accept=".mp3,audio/*"
+            required
+        >
+
+        <button type="submit">
+            Subir Podcast
+        </button>
+    </form>
+
+    <h2>Podcasts Disponibles</h2>
+
+    <div id="podcastList"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
