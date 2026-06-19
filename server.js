@@ -6,14 +6,19 @@ const fs = require("fs");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Crear carpeta uploads si no existe
+if (!fs.existsSync("uploads")) {
+    fs.mkdirSync("uploads");
+}
+
+// Archivos estáticos
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // Página principal
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
-
-// Archivos estáticos
-app.use(express.static("public"));
-app.use("/uploads", express.static("uploads"));
 
 // Configuración de subida
 const storage = multer.diskStorage({
@@ -36,17 +41,19 @@ app.post("/upload", upload.single("podcast"), (req, res) => {
 
 // Obtener podcasts
 app.get("/podcasts", (req, res) => {
-    fs.readdir("./uploads", (err, files) => {
+    fs.readdir(path.join(__dirname, "uploads"), (err, files) => {
         if (err) {
             return res.status(500).json({
                 error: "Error al leer los podcasts"
             });
         }
 
-        const podcasts = files.map(file => ({
-            name: file,
-            url: `/uploads/${file}`
-        }));
+        const podcasts = files
+            .filter(file => file !== ".gitkeep")
+            .map(file => ({
+                name: file,
+                url: `/uploads/${file}`
+            }));
 
         res.json(podcasts);
     });
